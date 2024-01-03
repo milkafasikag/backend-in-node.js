@@ -128,10 +128,6 @@ router.post('/reset/:token', async (req, res) => {
 
             let password = sanitize(req.body.password);
             let password_confirm = sanitize(req.body.password_confirm);
-            // if (password && !schema.validate(password))
-            //     errors.password = "Password must contain at least one uppercase, one number and one symbol, and at least 8 characters."
-            // if (password && password_confirm && !Validator.equals(password, password_confirm))
-            //     errors.password_confirm = "Passwords must match";
             if (!errors.password && !errors.password_confirm) {
                 user.password = password
                 user.save();
@@ -213,14 +209,8 @@ router.post("/login", (req, res) => {
 });
 
 router.post('/forgotPassword', async (req, res) => {
-
-    // const { errors, isValid } = validateResetSend(req.body);
-    // Check validation
-    // if (!isValid)
-    //     return res.status(400).json(errors);
-
-    try {
-        // const accessToken = await oAuth2Client.getAccessToken();
+ try {
+        
         let transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
